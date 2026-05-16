@@ -1,0 +1,16 @@
+{
+  "name": "desafio-automacao-testes",
+  "version": "1.0.0",
+  "description": "Projeto de automação de testes de unidade",
+  "main": "src/ServicoDePagamento.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha test/*.test.js"
+  },
+  "keywords": [],
+  "author": "flavio",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  }
+}
