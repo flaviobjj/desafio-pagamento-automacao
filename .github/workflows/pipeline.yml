@@ -1,28 +1,32 @@
-name: Pipeline de Testes Automatizados - PGATS
+name: Pipeline CI - TCD Flavio
 
-# O Gatilho (Trigger): a pipeline roda a cada "push" (envio de código) [3]
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Permite execução MANUAL
+  schedule:
+    - cron: '0 3 * * *' # Execução AGENDADA (todo dia às 3h da manhã)
 
 jobs:
-  # O Job: uma unidade de trabalho que será executada [3]
-  executar-testes:
-    # A Máquina: definimos uma versão fixa do sistema operacional [4]
+  testes:
     runs-on: ubuntu-latest
-    
     steps:
-      # Passo 1: O "vigia" baixa o seu código do GitHub para a máquina de execução
       - uses: actions/checkout@v4
-
-      # Passo 2: Configura o ambiente Node.js na máquina [5]
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      # Passo 3: Compilação - Instala as dependências (Mocha) definidas no seu package.json [5, 6]
+      
       - name: Instalar Dependências
         run: npm install
 
-      # Passo 4: Execução de Testes - Roda o comando 'npm test' que configuramos [2, 7]
-      - name: Rodar Testes de Unidade
-        run: npm test
+      # Roda os testes e gera o relatório no formato padronizado xUnit (XML)
+      - name: Rodar Testes com Relatório
+        run: npx mocha test/*.test.js --reporter xunit > report.xml
+        continue-on-error: true # Garante que a pipeline continue para salvar o relatório mesmo se um teste falhar
+
+      # ARMAZENAMENTO/PUBLICAÇÃO do relatório na pipeline (Requisito do TCD)
+      - name: Publicar Relatório de Testes
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-de-testes
+          path: report.xml
