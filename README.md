@@ -42,35 +42,42 @@ Classificação correta para pagamentos iguais ou menores que 100.00.
 Garantia de que a consulta retorna apenas o registro mais recente da lista.
 
 
-🤖 A Pipeline de Integração Contínua (Meu TCD)
-Para este trabalho, configurei um "vigia" automático usando o GitHub Actions. Isso significa que o código é testado na nuvem de forma independente e frequente.
-
-Gatilhos de Execução (Triggers):
-A pipeline é acionada de três formas:
-
-Push: 
-Toda vez que eu envio uma atualização para a branch main.
-
-Manual (Workflow Dispatch): 
-Posso rodar os testes clicando em um botão no GitHub.
-
-Agendada (Schedule): 
-Configurei para rodar sozinha em períodos definidos (via cron).
 
 
+🤖 Pipeline de Integração Contínua 
 
-🧠 Conceitos Aplicados (O que aprendi)
-Para atender aos requisitos do Trabalho de Conclusão, apliquei estes fundamentos de CI/CD:
+Neste projeto, utilizei o GitHub Actions como servidor de automação para implementar um fluxo de Integração Contínua; 
+Garantindo que os testes sejam executados de forma independente na nuvem.
 
-Integração Contínua (CI): 
-É a prática de juntar as alterações de código com frequência para encontrar erros o mais rápido possível (princípio Fail Fast).
 
-Jobs e Steps: 
-Organizei a pipeline em "Trabalhos" e "Passos". O robô baixa o código, prepara o ambiente Node.js, instala as dependências e executa os testes.
+⚡ Gatilhos de Execução (Triggers)
+Pipeline configurada para ser acionada por diferentes eventos, garantindo um feedback constante:
 
-Relatórios (xUnit):
-Configurei o Mocha para gerar um relatório profissional no formato xUnit XML. facilitando a leitura dos resultados.
+    Push: Dispara automaticamente a cada nova alteração enviada para o repositório central.
+    Manual (Workflow Dispatch): Permite a execução dos testes sob demanda através de um clique no painel do GitHub.
+    Agendada (Schedule): Configurada para rodar de forma automática em períodos definidos (via cron), validando o projeto periodicamente.
 
-Artefatos:
-O relatório gerado (report.xml) é armazenado na própria pipeline como um "artefato". Assim, tenho um histórico permanente de que os testes passaram com sucesso.
 
+
+🧠 Conceitos de CI/CD Aplicados
+Requisitos do Trabalho de Conclusão;
+
+Aplicado os seguintes fundamentos:
+
+    Integração Contínua (CI): 
+    Prática de mesclar alterações de código frequentemente para identificar e corrigir problemas o mais rápido possível (Build fast, fail fast).
+
+    Jobs e Steps:
+   A automação é dividida em um Job (trabalho) que executa sequencialmente os Steps (passos) de baixar o código, preparar o ambiente Node.js, instalar dependências e rodar os testes.
+
+    Relatórios Padronizados (xUnit):
+    Gera um relatório no formato xUnit XML, um padrão que detalha o sucesso ou falha de cada caso de teste executado.
+
+    Artefatos: 
+    O relatório gerado (report.xml) é armazenado na pipeline como um Artefato, servindo como evidência permanente de que os testes e a integração passaram com sucesso
+
+
+
+
+
+   
