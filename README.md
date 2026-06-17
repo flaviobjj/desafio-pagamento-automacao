@@ -32,11 +32,45 @@ Seguindo os princípios de **Código Limpo** e organização modular:
    ```bash
    npm install
 
-    Execute a suíte de testes:
+Execute a suíte de testes:
 
 ✅ Testes Implementados
 Os testes garantem o funcionamento dos seguintes cenários:
 
-    Classificação correta para pagamentos acima de 100.00.
-    Classificação correta para pagamentos iguais ou menores que 100.00.
-    Garantia de que a consulta retorna apenas o registro mais recente da lista.
+Classificação correta para pagamentos acima de 100.00.
+Classificação correta para pagamentos iguais ou menores que 100.00.
+Garantia de que a consulta retorna apenas o registro mais recente da lista.
+
+
+🤖 A Pipeline de Integração Contínua (Meu TCD)
+Para este trabalho, configurei um "vigia" automático usando o GitHub Actions. Isso significa que o código é testado na nuvem de forma independente e frequente.
+
+Gatilhos de Execução (Triggers):
+A pipeline é acionada de três formas:
+
+Push: 
+Toda vez que eu envio uma atualização para a branch main.
+
+Manual (Workflow Dispatch): 
+Posso rodar os testes clicando em um botão no GitHub.
+
+Agendada (Schedule): 
+Configurei para rodar sozinha em períodos definidos (via cron).
+
+
+
+🧠 Conceitos Aplicados (O que aprendi)
+Para atender aos requisitos do Trabalho de Conclusão, apliquei estes fundamentos de CI/CD:
+
+Integração Contínua (CI): 
+É a prática de juntar as alterações de código com frequência para encontrar erros o mais rápido possível (princípio Fail Fast).
+
+Jobs e Steps: 
+Organizei a pipeline em "Trabalhos" e "Passos". O robô baixa o código, prepara o ambiente Node.js, instala as dependências e executa os testes.
+
+Relatórios (xUnit):
+Configurei o Mocha para gerar um relatório profissional no formato xUnit XML. facilitando a leitura dos resultados.
+
+Artefatos:
+O relatório gerado (report.xml) é armazenado na própria pipeline como um "artefato". Assim, tenho um histórico permanente de que os testes passaram com sucesso.
+
