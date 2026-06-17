@@ -1,16 +1,16 @@
-// Exportamos a classe para ser usada nos testes (ES Modules) [6]
+// Exportamos a classe para ser usada nos testes (ES Modules) 
 export class ServicoDePagamento {
-    #pagamentos; // Propriedade privada para proteger a lista [2, 5]
+    #pagamentos; // Propriedade privada para proteger a lista 
 
     constructor() {
-        this.#pagamentos = []; // Inicializa a lista de pagamentos vazia [5]
+        this.#pagamentos = []; // Inicializa a lista de pagamentos vazia 
     }
 
     pagar(codigoBarras, empresa, valor) {
-        // Regra de negócio: valor > 100.00 é 'cara', caso contrário 'padrão' [4]
+        // Regra de negócio: valor > 100.00 é 'cara', caso contrário 'padrão' 
         const categoria = valor > 100.00 ? 'cara' : 'padrão';
 
-        // Adiciona o pagamento como um objeto na lista [4, 5]
+        // Adiciona o pagamento como um objeto na lista 
         this.#pagamentos.push({
             codigoBarras: codigoBarras,
             empresa: empresa,
@@ -20,7 +20,7 @@ export class ServicoDePagamento {
     }
 
     consultarUltimoPagamento() {
-        // Retorna apenas o último item da lista usando .at(-1) [7-9]
+        // Retorna apenas o último item da lista usando .at(-1) 
         return this.#pagamentos.at(-1);
     }
 }
