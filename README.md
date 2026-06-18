@@ -42,40 +42,88 @@ Classificação correta para pagamentos iguais ou menores que 100.00.
 Garantia de que a consulta retorna apenas o registro mais recente da lista.
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## 🤖 PIPELINE CI/CD — INTEGRAÇÃO CONTÍNUA COM GITHUB ACTIONS
 
-🤖 Pipeline de Integração Contínua 
+Neste projeto, foi configurada uma pipeline de **Integração Contínua (CI)** utilizando o **GitHub Actions**.
+O objetivo é automatizar a execução dos testes sempre que houver alterações no projeto, garantindo mais segurança, rastreabilidade e qualidade no código.
 
-Neste projeto, utilizei o GitHub Actions como servidor de automação para implementar um fluxo de Integração Contínua; 
-Garantindo que os testes sejam executados de forma independente na nuvem.
+A pipeline executa os testes de forma independente na nuvem, sem depender do ambiente local do desenvolvedor.
 
+---
 
-⚡ Gatilhos de Execução (Triggers)
-Pipeline configurada para ser acionada por diferentes eventos, garantindo um feedback constante:
+## ⚡ GATILHOS DE EXECUÇÃO DA PIPELINE
 
-    Push: Dispara automaticamente a cada nova alteração enviada para o repositório central.
-    Manual (Workflow Dispatch): Permite a execução dos testes sob demanda através de um clique no painel do GitHub.
-    Agendada (Schedule): Configurada para rodar de forma automática em períodos definidos (via cron), validando o projeto periodicamente.
+A pipeline foi configurada para ser executada em diferentes situações:
 
+### PUSH
 
+A execução acontece automaticamente sempre que uma nova alteração é enviada para o repositório.
 
-🧠 Conceitos de CI/CD Aplicados
-Requisitos do Trabalho de Conclusão;
+### WORKFLOW DISPATCH
 
-Aplicado os seguintes fundamentos:
+Permite executar a pipeline manualmente pelo painel do GitHub Actions, quando for necessário rodar os testes sob demanda.
 
-    Integração Contínua (CI): 
-    Prática de mesclar alterações de código frequentemente para identificar e corrigir problemas o mais rápido possível (Build fast, fail fast).
+### SCHEDULE
 
-    Jobs e Steps:
-   A automação é dividida em um Job (trabalho) que executa sequencialmente os Steps (passos) de baixar o código, preparar o ambiente Node.js, instalar dependências e rodar os testes.
+Permite executar a pipeline de forma agendada, utilizando configuração via `cron`, para validar o projeto periodicamente.
 
-    Relatórios Padronizados (xUnit):
-    Gera um relatório no formato xUnit XML, um padrão que detalha o sucesso ou falha de cada caso de teste executado.
+---
 
-    Artefatos: 
-    O relatório gerado (report.xml) é armazenado na pipeline como um Artefato, servindo como evidência permanente de que os testes e a integração passaram com sucesso
+## 🧠 CONCEITOS DE CI/CD APLICADOS
 
+### INTEGRAÇÃO CONTÍNUA — CI
+
+Foi aplicado o conceito de **Integração Contínua**, que consiste em validar o código frequentemente por meio de testes automatizados.
+
+Essa prática ajuda a identificar falhas rapidamente após alterações no projeto, seguindo a ideia de:
+
+**Build fast, fail fast.**
+
+---
+
+## 🧩 JOBS E STEPS
+
+A automação foi organizada em um **Job**, composto por uma sequência de **Steps**.
+
+Durante a execução da pipeline, são realizados os seguintes passos:
+
+* Baixar o código do repositório.
+* Configurar o ambiente com Node.js.
+* Instalar as dependências do projeto.
+* Executar a suíte de testes automatizados.
+* Gerar o relatório de execução dos testes.
+
+---
+
+## 📄 RELATÓRIO DE TESTES — XUNIT
+
+A pipeline gera um relatório no formato **xUnit XML**, que é um padrão utilizado para registrar o resultado da execução dos testes.
+
+Esse relatório permite visualizar quais testes foram executados, quais passaram e quais falharam.
+
+---
+
+## 📦 ARTEFATOS DA PIPELINE
+
+Após a execução dos testes, o relatório gerado, como o arquivo `report.xml`, é armazenado na pipeline como um **artefato**.
+
+Esse artefato serve como evidência da execução dos testes e pode ser consultado posteriormente para análise ou comprovação dos resultados.
+
+---
+
+## ✅ OBJETIVO DA AUTOMAÇÃO
+
+Com essa configuração, o projeto passa a contar com um fluxo automatizado de validação, garantindo que os testes sejam executados de forma padronizada a cada alteração relevante no repositório.
+
+A pipeline contribui para:
+
+* Reduzir falhas manuais.
+* Aumentar a confiabilidade do projeto.
+* Validar automaticamente os testes.
+* Registrar evidências da execução.
+* Melhorar a qualidade do processo de desenvolvimento.
 
 
 
